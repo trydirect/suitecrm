@@ -2,8 +2,6 @@
 
 set -e
 
-chown www-data:www-data -R /app
-
 
 cat > /app/suitecrm/config_override.php <<EOF
 <?php
@@ -16,16 +14,11 @@ php_admin_value[upload_max_filesize] = 16M
 php_admin_value[date.timezone] = "UTC"
 EOF
 
-cat > /root/cron.conf <<EOF
-*    *    *    *    *     cd ${SUITE_APP_DIR}; php -f cron.php > /dev/null 2>&1 
-EOF
-
-crontab /root/cron.conf;
 /usr/sbin/cron
 
 cat > /etc/supervisor/conf.d/php5-fpm.conf <<EOF
 [program:php5-fpm]
-command = php-fpm
+command = php-fpm -F
 user = root
 autostart = true
 EOF
@@ -37,7 +30,6 @@ user = root
 autostart = true
 EOF
 
-chown www-data:www-data /app/suitecrm/config_override.php
 chmod +w /app/suitecrm/config_override.php
 
 exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
