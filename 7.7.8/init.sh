@@ -2,7 +2,7 @@
 
 set -e
 
-chown www-data:www-data -R /app
+chown trydirect. -R /app
 
 
 cat > /app/suitecrm/config_override.php <<EOF
@@ -17,7 +17,7 @@ php_admin_value[date.timezone] = "UTC"
 EOF
 
 cat > /root/cron.conf <<EOF
-*    *    *    *    *     cd ${SUITE_APP_DIR}; php -f cron.php > /dev/null 2>&1 
+*    *    *    *    *     cd ${SUITE_APP_DIR}; php -f cron.php > /dev/null 2>&1
 EOF
 
 crontab /root/cron.conf;
