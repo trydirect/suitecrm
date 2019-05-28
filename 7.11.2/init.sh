@@ -2,7 +2,7 @@
 
 set -e
 
-chown suitecrm.suitecrm -R /app/suitecrm
+#chown suitecrm.suitecrm -R /app/suitecrm
 
 cat > /app/suitecrm/config_override.php <<EOF
 <?php

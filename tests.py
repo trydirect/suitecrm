@@ -7,7 +7,8 @@ import requests
 
 client = docker.from_env()
 
-# time.sleep(10)
+time.sleep(10)
+
 for c in client.containers.list():
     print("{}: {}" .format(c.name, c.status))
     if 'running' not in c.status:
