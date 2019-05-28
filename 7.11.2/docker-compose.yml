@@ -1,0 +1,35 @@
+version: "2"
+
+volumes:
+  suitecrm-db:
+      driver: local
+
+services:
+  suitecrm:
+    image: ${REGISTRY}trydirect/suitecrm:7.11.2
+    build: .
+    container_name: suitecrm
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    links:
+      - db:mysql
+    env_file: .env
+    volumes:
+      - ./configs/cron:/etc/cron.d
+      - ./configs/certs/ssl:/etc/nginx/ssl
+      - ./configs/certs/letsencrypt:/etc/letsencrypt
+      - ./configs/nginx/conf.d:/etc/nginx/conf.d/
+      - ./configs/nginx/nginx.conf:/etc/nginx/nginx.conf
+#      - ./configs/php/fpm/www.conf:/usr/local/etc/php-fpm.conf
+      #- ./configs/supervisord:/etc/supervisor/conf.d
+
+  db:
+    image: mariadb
+    container_name: db
+    env_file: .env
+    restart: always
+    volumes:
+      - suitecrm-db:/var/lib/mysql
+
