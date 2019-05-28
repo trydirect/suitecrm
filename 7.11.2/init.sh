@@ -44,4 +44,7 @@ stdout_logfile_maxbytes=0
 redirect_stderr=true
 EOF
 
+chown www-data:www-data /app/suitecrm/config_override.php
+chmod +w /app/suitecrm/config_override.php
+
 exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
