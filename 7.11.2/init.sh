@@ -11,6 +11,7 @@ cat > /app/suitecrm/config_override.php <<EOF
 EOF
 
 chown suitecrm. /app/suitecrm/config_override.php
+chmod +w /app/suitecrm/config_override.php
 
 cat >> /usr/local/etc/php-fpm.conf <<EOF
 user = suitecrm
@@ -43,8 +44,5 @@ stdout_logfile=/dev/fd/1
 stdout_logfile_maxbytes=0
 redirect_stderr=true
 EOF
-
-chown www-data:www-data /app/suitecrm/config_override.php
-chmod +w /app/suitecrm/config_override.php
 
 exec /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
