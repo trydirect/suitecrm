@@ -6,7 +6,7 @@ ENV SUITE_GIT_ARCHIVE optimum-patches.zip
 ENV SUITE_GIT_REPO ${SUITE_GIT_BASE_URL}/${SUITE_GIT_ARCHIVE}
 ENV SUITE_APP_DIR /app
 
-RUN groupadd -r -g 2000 trydirect; useradd -r -u 2000 -g 2000 -m -c "app account" -d /home/trydirect -s /bin/bash trydirect
+RUN groupadd -r -g 2000 suitecrm; useradd -r -u 2000 -g 2000 -m -c "app account" -d /home/suitecrm -s /bin/bash suitecrm
 
 RUN apt-get update && \
     apt-get install -y  libcurl4-gnutls-dev libpng-dev libssl-dev libc-client2007e-dev libkrb5-dev \
