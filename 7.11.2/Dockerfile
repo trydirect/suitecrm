@@ -33,7 +33,7 @@ WORKDIR /app/suitecrm
 RUN composer install
 COPY init.sh /usr/local/bin/init.sh
 RUN chmod u+x /usr/local/bin/init.sh
-COPY nginx.conf /etc/nginx/conf.d/default.conf 
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 RUN rm /etc/nginx/sites-enabled/* && rm /etc/nginx/sites-available/*
 RUN chown suitecrm. -R /app/suitecrm
 EXPOSE 80
