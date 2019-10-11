@@ -48,7 +48,7 @@ mycnf = mysql.exec_run("/usr/sbin/mysqld --verbose  --help")
 mysql_log = mysql.logs()
 print(mysql_log.decode())
 assert "mysqld: ready for connections" in mysql_log.decode()
-assert '10.3.15-MariaDB' in mysql_log.decode()
+assert '-MariaDB' in mysql_log.decode()
 
 response = requests.get("http://localhost")
 assert "SuiteCRM Setup Wizard:  Welcome to the SuiteCRM  7.11.2 Setup Wizard, License Acceptance<" in response.text
